@@ -3,4 +3,6 @@
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="let_me_count">数一数</string>
 </resources>
