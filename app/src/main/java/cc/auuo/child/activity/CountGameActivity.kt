@@ -2,9 +2,9 @@ package cc.auuo.child.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.MotionEvent
 import cc.auuo.child.R
 import cc.auuo.child.util.fullScreen
+import cc.auuo.child.util.setPressStyle
 import kotlinx.android.synthetic.main.activity_count_game.*
 
 class CountGameActivity : AppCompatActivity() {
@@ -34,12 +34,16 @@ class CountGameActivity : AppCompatActivity() {
 
     private fun initTouch() {
         closeButton.setOnTouchListener { v, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                v.setBackgroundResource(R.drawable.close_button_press)
-            } else if (event.action == MotionEvent.ACTION_UP) {
-                v.setBackgroundResource(R.drawable.close_button)
-            }
-            return@setOnTouchListener false
+            setPressStyle(v, event, R.drawable.close_button, R.drawable.close_button_press)
+        }
+        firstAnswerButton.setOnTouchListener { v, event ->
+            setPressStyle(v, event, R.drawable.button_pink, R.drawable.button_pink_press)
+        }
+        secondAnswerButton.setOnTouchListener { v, event ->
+            setPressStyle(v, event, R.drawable.button_green, R.drawable.button_green_press)
+        }
+        thirdAnswerButton.setOnTouchListener { v, event ->
+            setPressStyle(v, event, R.drawable.button_blue, R.drawable.button_blue_press)
         }
     }
 }
