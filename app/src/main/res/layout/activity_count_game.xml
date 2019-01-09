@@ -1,56 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/count_game_background"
+    android:orientation="horizontal"
     tools:context=".activity.CountGameActivity">
+
+    <!-- 左方占位 -->
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="23"/>
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="62">
 
-        <ImageView
+        <!-- 上方占位 -->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            android:src="@drawable/count" />
+            android:layout_weight="12"/>
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <!-- 黑板 -->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
-            android:gravity="center">
+            android:layout_weight="190"
+            android:background="@drawable/count_game_blackboard">
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="27sp"
-                android:text="11"/>
+        </FrameLayout>
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="40dp"
-                android:textSize="27sp"
-                android:text="23"/>
+        <!-- 下方占位 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12"/>
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="40dp"
-                android:textSize="27sp"
-                android:text="56"/>
-
-        </LinearLayout>
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+
+    <!-- 右方占位 -->
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="14"/>
+
+</LinearLayout>
