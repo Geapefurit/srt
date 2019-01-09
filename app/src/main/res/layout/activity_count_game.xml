@@ -1,53 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/count_game_background"
-    android:orientation="horizontal"
-    tools:context=".activity.CountGameActivity">
+    tools:context=".activity.CountGameActivity"
+    tools:layout_editor_absoluteY="73dp">
 
-    <!-- 左方占位 -->
-    <FrameLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="23"/>
+        android:layout_height="0dp"
+        android:background="@drawable/count_game_blackboard"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/top_guideline">
 
-    <LinearLayout
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="62">
+        app:layout_constraintGuide_percent="0.23" />
 
-        <!-- 上方占位 -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="12"/>
+    <android.support.constraint.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86" />
 
-        <!-- 黑板 -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="190"
-            android:background="@drawable/count_game_blackboard">
+    <android.support.constraint.Guideline
+        android:id="@+id/top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
 
-        </FrameLayout>
+    <android.support.constraint.Guideline
+        android:id="@+id/bottom_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
 
-        <!-- 下方占位 -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="12"/>
-
-    </LinearLayout>
-
-
-    <!-- 右方占位 -->
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="14"/>
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
