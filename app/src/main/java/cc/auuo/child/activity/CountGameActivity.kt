@@ -14,8 +14,16 @@ class CountGameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_count_game)
 
         fullScreen()
+
         initListener()
         initTouch()
+        initData()
+    }
+
+    private fun initData() {
+        firstAnswerButton.text = "8"
+        secondAnswerButton.text = "6"
+        thirdAnswerButton.text = "7"
     }
 
     private fun initListener() {
