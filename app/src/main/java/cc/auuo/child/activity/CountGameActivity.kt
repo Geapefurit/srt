@@ -33,7 +33,7 @@ class CountGameActivity : AppCompatActivity() {
         val data = ArrayList<Map<String, Any>>()
         for (i in 0 until count) {
             val map = HashMap<String, Any>()
-            map["img"] = R.drawable.guitar
+            map["img"] = R.drawable.bear
             data.add(map)
         }
         val adapter = SimpleAdapter(this, data, R.layout.count_game_item, arrayOf("img"), intArrayOf(R.id.countGameItemImg))
