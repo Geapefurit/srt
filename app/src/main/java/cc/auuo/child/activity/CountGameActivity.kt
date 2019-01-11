@@ -7,9 +7,16 @@ import cc.auuo.child.R
 import cc.auuo.child.util.fullScreen
 import cc.auuo.child.util.setPressStyle
 import kotlinx.android.synthetic.main.activity_count_game.*
-import kotlin.math.min
+import java.util.*
 
 class CountGameActivity : AppCompatActivity() {
+
+    private val random = Random()
+
+    companion object {
+        val drawableIds = arrayOf(R.drawable.bear, R.drawable.bicycle, R.drawable.bug, R.drawable.butterfly,
+                R.drawable.dog, R.drawable.grape, R.drawable.guitar, R.drawable.mango, R.drawable.umbrella)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,21 +30,33 @@ class CountGameActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        firstAnswerButton.text = "8"
-        secondAnswerButton.text = "6"
-        thirdAnswerButton.text = "7"
-
         // init gridView
-        val count = 9
-        gridView.numColumns = min(5, count)
-        val data = ArrayList<Map<String, Any>>()
-        for (i in 0 until count) {
-            val map = HashMap<String, Any>()
-            map["img"] = R.drawable.bear
-            data.add(map)
+        getQuestion { answer, resId ->
+            gridView.numColumns = answer
+            if (answer > 3) {
+                gridView.numColumns = if (answer % 2 == 0) answer / 2 else answer / 2 + 1
+            }
+            val data = ArrayList<Map<String, Any>>()
+            for (i in 0 until answer) {
+                val map = HashMap<String, Any>()
+                map["img"] = resId
+                data.add(map)
+            }
+            val adapter = SimpleAdapter(this, data, R.layout.count_game_item, arrayOf("img"), intArrayOf(R.id.countGameItemImg))
+            gridView.adapter = adapter
+
+            // todo init answer button
+            firstAnswerButton.text = "8"
+            secondAnswerButton.text = "6"
+            thirdAnswerButton.text = "7"
         }
-        val adapter = SimpleAdapter(this, data, R.layout.count_game_item, arrayOf("img"), intArrayOf(R.id.countGameItemImg))
-        gridView.adapter = adapter
+    }
+
+    private fun getQuestion(callback: (Int, Int) -> Unit) {
+        // 以后可能从网络获取
+        val target = random.nextInt(10) + 1
+        val resId = drawableIds[random.nextInt(drawableIds.size)]
+        callback(target, resId)
     }
 
     private fun initListener() {
