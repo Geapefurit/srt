@@ -86,8 +86,12 @@
             app:layout_constraintTop_toBottomOf="@+id/inside_bottom_guideline" />
 
         <GridView
+            android:id="@+id/gridView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:cacheColorHint="#00000000"
+            android:listSelector="#00000000"
+            android:numColumns="5"
             app:layout_constraintBottom_toTopOf="@+id/content_bottom_guideline"
             app:layout_constraintEnd_toStartOf="@+id/content_right_guideline"
             app:layout_constraintStart_toStartOf="@+id/content_left_guideline"
@@ -98,14 +102,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.12" />
+            app:layout_constraintGuide_percent="0.14" />
 
         <android.support.constraint.Guideline
             android:id="@+id/content_bottom_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.6" />
+            app:layout_constraintGuide_percent="0.63345194" />
 
     </android.support.constraint.ConstraintLayout>
 
