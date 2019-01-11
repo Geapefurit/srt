@@ -18,6 +18,8 @@ class CountGameActivity : AppCompatActivity() {
     private val random = Random()
     private val handler = Handler()
     private var answer = 0
+    private var marked = BooleanArray(0)
+    private var numMarked = 0
 
     companion object {
         private val DRAWABLE_ID = arrayOf(R.drawable.bear, R.drawable.bicycle, R.drawable.bug, R.drawable.butterfly,
@@ -38,8 +40,10 @@ class CountGameActivity : AppCompatActivity() {
     }
 
     private fun initData() {
+        numMarked = 0
         getQuestion { answer, resId ->
             this.answer = answer
+            marked = BooleanArray(answer)
             setGrid(answer, resId)
             setAnswerButton(answer)
         }
@@ -90,6 +94,18 @@ class CountGameActivity : AppCompatActivity() {
         firstAnswerButton.setOnClickListener(::verifyAnswer)
         secondAnswerButton.setOnClickListener(::verifyAnswer)
         thirdAnswerButton.setOnClickListener(::verifyAnswer)
+
+        gridView.setOnItemClickListener { _, view, _, id ->
+            if (marked[id.toInt()]) {
+                return@setOnItemClickListener
+            }
+            runOnUiThread {
+                marked[id.toInt()] = true
+                numMarked += 1
+                // todo 读出这个数字 numMarked
+                view.alpha = 0.35F
+            }
+        }
     }
 
     private fun verifyAnswer(view: View) {
