@@ -1,5 +1,6 @@
 package cc.auuo.child.activity
 
+import android.media.SoundPool
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -21,6 +22,9 @@ class CountGameActivity : AppCompatActivity() {
     private var marked = BooleanArray(0)
     private var numMarked = 0
 
+    private lateinit var soundPool: SoundPool
+    private lateinit var numberAndIdMapping: Map<Int, Int>
+
     companion object {
         private val DRAWABLE_ID = arrayOf(R.drawable.bear, R.drawable.bicycle, R.drawable.bug, R.drawable.butterfly,
                 R.drawable.dog, R.drawable.grape, R.drawable.guitar, R.drawable.mango, R.drawable.umbrella)
@@ -34,9 +38,26 @@ class CountGameActivity : AppCompatActivity() {
 
         fullScreen()
 
+        initSound()
         initListener()
         initTouch()
         initData()
+    }
+    
+    private fun initSound() {
+        val builder = SoundPool.Builder()
+        soundPool = builder.setMaxStreams(3).build()
+
+        numberAndIdMapping = mapOf(1 to soundPool.load(applicationContext, R.raw.one, 1),
+                2 to soundPool.load(applicationContext, R.raw.two, 1),
+                3 to soundPool.load(applicationContext, R.raw.three, 1),
+                4 to soundPool.load(applicationContext, R.raw.four, 1),
+                5 to soundPool.load(applicationContext, R.raw.five, 1),
+                6 to soundPool.load(applicationContext, R.raw.six, 1),
+                7 to soundPool.load(applicationContext, R.raw.seven, 1),
+                8 to soundPool.load(applicationContext, R.raw.eight, 1),
+                9 to soundPool.load(applicationContext, R.raw.nine, 1),
+                10 to soundPool.load(applicationContext, R.raw.ten, 1))
     }
 
     private fun initData() {
@@ -102,10 +123,16 @@ class CountGameActivity : AppCompatActivity() {
             runOnUiThread {
                 marked[id.toInt()] = true
                 numMarked += 1
-                // todo 读出这个数字 numMarked
+                playNumberSound(numMarked)
                 view.alpha = 0.35F
             }
         }
+    }
+
+    private fun playNumberSound(num: Int) {
+        if (num < 1 || num > 10)
+            return
+        soundPool.play(numberAndIdMapping[num]!!, 1F, 1F, 0, 0, 1F)
     }
 
     private fun verifyAnswer(view: View) {
