@@ -93,8 +93,12 @@ class CountGameActivity : AppCompatActivity() {
     }
 
     private fun verifyAnswer(view: View) {
+        if (this.answer == 0)
+            return
+
         val buttonText = (view as Button).text
         if (buttonText == answer.toString()) {
+            this.answer = 0
             toast("答案正确")
             reloadDataLater()
         } else {
